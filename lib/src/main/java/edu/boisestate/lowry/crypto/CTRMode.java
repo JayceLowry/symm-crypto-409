@@ -8,19 +8,18 @@ public class CTRMode implements SymmetricCipher {
      * TODO Docs
      *
      * @param cipher
-     * @param iv
      */
-    public CTRMode(BlockCipher cipher, byte[] iv) {
+    public CTRMode(BlockCipher cipher) {
 
     }
 
     @Override
-    public byte[] encrypt(byte[] plaintext) {
+    public byte[] encrypt(byte[] plaintext, byte[] key) {
         return new byte[0];
     }
 
     @Override
-    public byte[] decrypt(byte[] ciphertext) {
+    public byte[] decrypt(byte[] ciphertext, byte[] key) {
         return new byte[0];
     }
 }
