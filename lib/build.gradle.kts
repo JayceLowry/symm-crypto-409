@@ -1,3 +1,5 @@
+import org.gradle.external.javadoc.StandardJavadocDocletOptions
+
 plugins {
     `java-library`
 }
@@ -19,14 +21,30 @@ dependencies {
     implementation(libs.guava)
 }
 
+val javaVersion = JavaLanguageVersion.of(21)
+
 // Apply a specific Java toolchain to ease working on different environments.
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(21))
+        languageVersion.set(javaVersion)
     }
 }
 
 tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+tasks.withType<Javadoc>().configureEach {
+    options {
+        val stp = this as StandardJavadocDocletOptions
+        stp.memberLevel = JavadocMemberLevel.PRIVATE
+        stp.addBooleanOption("html5", true)
+        stp.windowTitle = "Cryptographic Protocol Internals"
+        stp.docTitle = "Implementation Reference"
+
+        stp.encoding = "UTF-8"
+        val versionPath = javaVersion.asInt()
+        stp.links("https://docs.oracle.com/en/java/javase/$versionPath/docs/api/")
+    }
 }
