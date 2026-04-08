@@ -47,5 +47,6 @@ tasks.withType<Javadoc>().configureEach {
         stp.encoding = "UTF-8"
         val versionPath = javaVersion.asInt()
         stp.links("https://docs.oracle.com/en/java/javase/$versionPath/docs/api/")
+        stp.addFileOption("-add-stylesheet", file("${projectDir}/src/main/resources/style.css"))
     }
 }
