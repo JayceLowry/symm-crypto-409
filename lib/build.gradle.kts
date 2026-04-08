@@ -42,6 +42,7 @@ tasks.withType<Javadoc>().configureEach {
         stp.addBooleanOption("html5", true)
         stp.windowTitle = "Cryptographic Protocol Internals"
         stp.docTitle = "Implementation Reference"
+        stp.linkSource(true)
 
         stp.encoding = "UTF-8"
         val versionPath = javaVersion.asInt()
