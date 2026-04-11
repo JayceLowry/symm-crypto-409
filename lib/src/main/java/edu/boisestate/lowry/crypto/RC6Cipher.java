@@ -49,10 +49,27 @@ public class RC6Cipher implements BlockCipher {
         } else if (key.length != keySize.numBytes) {
             throw new UnsupportedOperationException();
         }
-
+        // Compute round keys and load plaintext into registers
+        int[] roundKeys = keySchedule(key); // The keys S[0, ..., 2r + 3]
         int[] registers = bytesToRegisters(plaintext); // The registers [A, B, C, D]
 
-        return new byte[0];
+        // Pre-whitening
+        registers[1] = registers[1] + roundKeys[0];
+        registers[3] = registers[3] + roundKeys[1];
+
+        // Run r rounds of encryption
+        for (int i = 1; i <= NUM_ROUNDS; i++) {
+            int t = Integer.rotateLeft(registers[1] * (2 * registers[1] + 1), 5); // Rotate a distance lg 32 = 5
+            int u = Integer.rotateLeft(registers[3] * (2 * registers[3] + 1), 5);
+            registers[0] = Integer.rotateLeft(registers[0] ^ t, u) + roundKeys[2 * i];
+            registers[2] = Integer.rotateLeft(registers[2] ^ u, t) + roundKeys[2 * i + 1];
+            rotateRegistersLeft(registers);
+        }
+        // Post-whitening
+        registers[0] = registers[0] + roundKeys[2 * NUM_ROUNDS + 2];
+        registers[2] = registers[2] + roundKeys[2 * NUM_ROUNDS + 3];
+
+        return registersToBytes(registers);
     }
 
     @Override
@@ -63,8 +80,24 @@ public class RC6Cipher implements BlockCipher {
         } else if (key.length != keySize.numBytes) {
             throw new UnsupportedOperationException();
         }
-        // TODO Implement
-        return new byte[0];
+        // Compute round keys and load ciphertext into registers
+        int[] roundKeys = keySchedule(key); // The keys S[0, ..., 2r + 3]
+        int[] registers = bytesToRegisters(ciphertext); // The registers [A, B, C, D]
+
+        registers[2] = registers[2] - roundKeys[2 * NUM_ROUNDS + 3];
+        registers[0] = registers[0] - roundKeys[2 * NUM_ROUNDS + 2];
+
+        // Run r rounds of decryption
+        for (int i = NUM_ROUNDS; i >= 1; i--) {
+            rotateRegistersRight(registers);
+            int u = Integer.rotateLeft(registers[3] * (2 * registers[3] + 1), 5);
+            int t = Integer.rotateLeft(registers[1] * (2 * registers[1] + 1), 5);
+            registers[2] = Integer.rotateRight(registers[2] - roundKeys[2 * i + 1], t) ^ u;
+            registers[0] = Integer.rotateRight(registers[0] - roundKeys[2 * i], u) ^ t;
+        }
+        registers[3] = registers[3] - roundKeys[1];
+        registers[1] = registers[1] - roundKeys[0];
+        return registersToBytes(registers);
     }
 
     @Override
@@ -73,46 +106,43 @@ public class RC6Cipher implements BlockCipher {
     }
 
     /**
-     * Converts an array of bytes, assumed to be of size
-     * BLOCK_SIZE_BYTES, to an array of four 32-bit registers
-     * (words). Bytes are placed in a little-endian fashion.
-     * @implNote We use an int array because ints are
-     * always 32 bits in Java, exactly what is needed for the
-     * w = 32 parameter. The registers here correspond
-     * to registers A, B, C, D, and they are loaded little
-     * endian so that for example the first byte is loaded
-     * into the least-significant byte of A, and last byte
-     * the most-significant byte of D.
+     * Converts an array of bytes to an array of 32-bit
+     * registers (words). Bytes are placed in a little-endian
+     * fashion. The length of bytes is assumed to be a multiple
+     * of four.
+     * @implNote We use an int array because ints are always
+     * 32 bits in Java, exactly what is needed for the
+     * w = 32 parameter. Loading the registers little
+     * endian corresponds to, for example, how the placement
+     * of bytes into A, B, C, D is described, and the same
+     * for the array L in the key schedule.
      *
      * @param bytes The array of bytes.
-     * @return an array of 32-bit words.
+     * @return an array of 32-bit registers.
      */
     private int[] bytesToRegisters(byte[] bytes) {
         ByteBuffer buffer = ByteBuffer.wrap(bytes);
-        buffer.order(ByteOrder.LITTLE_ENDIAN);
-        int[] registers = new int[NUM_REGISTERS];
-        buffer.asIntBuffer().get(registers);
+        int[] registers = new int[bytes.length / Integer.BYTES];
+        buffer.order(ByteOrder.LITTLE_ENDIAN).asIntBuffer().get(registers);
         return registers;
     }
 
     /**
      * Converts an array of registers to an array of bytes
-     * in a little endian fashion, and registers is assumed
-     * to be four words.
+     * in a little endian fashion.
      *
      * @param registers The array of registers.
      * @return an array of bytes.
      */
     private byte[] registersToBytes(int[] registers) {
-        ByteBuffer buffer = ByteBuffer.allocate(BLOCK_SIZE_BYTES);
-        buffer.order(ByteOrder.LITTLE_ENDIAN);
-        buffer.asIntBuffer().put(registers);
+        ByteBuffer buffer = ByteBuffer.allocate(registers.length * Integer.BYTES);
+        buffer.order(ByteOrder.LITTLE_ENDIAN).asIntBuffer().put(registers);
         return buffer.array();
     }
 
     /**
-     * Permute the registers to the left. This is the same
-     * operation as the parallel assignment step
+     * Rotate/permute the registers to the left. This is
+     * the same operation as the parallel assignment step
      * (A, B, C, D) = (B, C, D, A) for enciphering.
      *
      * @param registers The registers.
@@ -126,8 +156,8 @@ public class RC6Cipher implements BlockCipher {
     }
 
     /**
-     * Permute the registers to the left. This is the same
-     * operation as the parallel assignment step
+     * Rotate/permute the registers to the left. This is
+     * the same operation as the parallel assignment step
      * (A, B, C, D) = (D, A, B, C) for deciphering.
      *
      * @param registers The registers.
@@ -138,5 +168,47 @@ public class RC6Cipher implements BlockCipher {
             registers[i] = registers[i - 1];
         }
         registers[0] = tmp;
+    }
+
+    /**
+     * Derives 2r + 4 round keys from the given key, loaded
+     * into an array of 32-bit registers.
+     *
+     * @param key The private key.
+     * @return An array of the round keys as registers.
+     */
+    private int[] keySchedule(byte[] key) {
+        // Magic constants
+        final int P = 0xB7E15163;
+        final int Q = 0x9E3779B9;
+
+        // Load the key into a set of registers
+        int[] keyRegisters = bytesToRegisters(key); // The array L
+        int numRoundKeys = 2 * NUM_ROUNDS + 4;
+        int[] roundKeys = new int[numRoundKeys]; // The array S
+
+        // Initialize S with the sequence P, P + Q, P + 2Q, ..., P + (2r + 3)Q
+        roundKeys[0] = P;
+        for (int i = 1; i < numRoundKeys; i++) {
+            roundKeys[i] = roundKeys[i - 1] + Q;
+        }
+
+        // Mix the key registers L into the round key array S
+        int i, j, A, B;
+        i = j = A = B = 0;
+        int iterations = 3 * Math.max(keyRegisters.length, numRoundKeys);
+
+        for (int s = 1; s <= iterations; s++) {
+            roundKeys[i] = Integer.rotateLeft(roundKeys[i] + (A + B), 3);
+            A = roundKeys[i];
+
+            keyRegisters[j] = Integer.rotateLeft(keyRegisters[j] + (A + B), (A + B));
+            B = keyRegisters[j];
+
+            i = (i + 1) % numRoundKeys;
+            j = (j + 1) % keyRegisters.length;
+        }
+
+        return roundKeys;
     }
 }
