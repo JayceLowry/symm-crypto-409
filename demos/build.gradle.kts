@@ -9,6 +9,10 @@ repositories {
     mavenCentral()
 }
 
+application {
+    mainClass.set("edu.boisestate.lowry.crypto.demo.CipherDemo")
+}
+
 dependencies {
     implementation(project(":lib"))
 }
