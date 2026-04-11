@@ -38,7 +38,7 @@ loadScripts(document, 'script');</script>
 <p>Summary:</p>
 <ul>
 <li>Nested</li>
-<li>Field</li>
+<li><a href="#field-summary">Field</a></li>
 <li><a href="#constructor-summary">Constr</a></li>
 <li><a href="#method-summary">Method</a></li>
 </ul>
@@ -46,7 +46,7 @@ loadScripts(document, 'script');</script>
 <li>
 <p>Detail:</p>
 <ul>
-<li>Field</li>
+<li><a href="#field-detail">Field</a></li>
 <li><a href="#constructor-detail">Constr</a></li>
 <li><a href="#method-detail">Method</a></li>
 </ul>
@@ -58,13 +58,13 @@ loadScripts(document, 'script');</script>
 <ul class="sub-nav-list">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field-summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor-summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method-summary">Method</a></li>
 </ul>
 <ul class="sub-nav-list">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field-detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor-detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method-detail">Method</a></li>
 </ul>
@@ -93,13 +93,48 @@ loadScripts(document, 'script');</script>
 <dd><code><a href="BlockCipher.html" title="interface in edu.boisestate.lowry.crypto">BlockCipher</a></code></dd>
 </dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public class </span><span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/RC6Cipher.html#line-6">RC6Cipher</a></span>
+<div class="type-signature"><span class="modifiers">public class </span><span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/RC6Cipher.html#line-14">RC6Cipher</a></span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="BlockCipher.html" title="interface in edu.boisestate.lowry.crypto">BlockCipher</a></span></div>
-<div class="block">TODO</div>
+<div class="block">An implementation of the RC6-32/20/b block cipher. This implementation
+ is configured for word size w = 32 and r = 20 rounds. It also supports
+ variable secret key lengths 'b' (16, 24, or 32 bytes), corresponding to
+ requirements for the AES-128, AES-192, and AES-256.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
+<!-- =========== FIELD SUMMARY =========== -->
+<li>
+<section class="field-summary" id="field-summary">
+<h2>Field Summary</h2>
+<div class="caption"><span>Fields</span></div>
+<div class="summary-table three-column-summary">
+<div class="table-header col-first">Modifier and Type</div>
+<div class="table-header col-second">Field</div>
+<div class="table-header col-last">Description</div>
+<div class="col-first even-row-color"><code>private static final int</code></div>
+<div class="col-second even-row-color"><code><a href="#BLOCK_SIZE_BYTES" class="member-name-link">BLOCK_SIZE_BYTES</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The block size in bytes.</div>
+</div>
+<div class="col-first odd-row-color"><code>private final <a href="KeySize.html" title="enum class in edu.boisestate.lowry.crypto">KeySize</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#keySize" class="member-name-link">keySize</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">The key size, corresponding to the RC6 'b' parameter.</div>
+</div>
+<div class="col-first even-row-color"><code>private static final int</code></div>
+<div class="col-second even-row-color"><code><a href="#NUM_REGISTERS" class="member-name-link">NUM_REGISTERS</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The number of registers.</div>
+</div>
+<div class="col-first odd-row-color"><code>private static final int</code></div>
+<div class="col-second odd-row-color"><code><a href="#NUM_ROUNDS" class="member-name-link">NUM_ROUNDS</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">The number of rounds for encryption and decryption.</div>
+</div>
+</div>
+</section>
+</li>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <li>
 <section class="constructor-summary" id="constructor-summary">
@@ -108,8 +143,11 @@ implements <a href="BlockCipher.html" title="interface in edu.boisestate.lowry.c
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E()" class="member-name-link">RC6Cipher</a>()</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(edu.boisestate.lowry.crypto.KeySize)" class="member-name-link">RC6Cipher</a><wbr>(<a href="KeySize.html" title="enum class in edu.boisestate.lowry.crypto">KeySize</a>&nbsp;keySize)</code></div>
+<div class="col-last even-row-color">
+<div class="block">Creates an instance of this cipher, configured for
+ the given key size.</div>
+</div>
 </div>
 </section>
 </li>
@@ -124,22 +162,50 @@ implements <a href="BlockCipher.html" title="interface in edu.boisestate.lowry.c
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>byte[]</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#decipher(byte%5B%5D,byte%5B%5D)" class="member-name-link">decipher</a><wbr>(byte[]&nbsp;ciphertext,
- byte[]&nbsp;key)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private int[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#bytesToRegisters(byte%5B%5D)" class="member-name-link">bytesToRegisters</a><wbr>(byte[]&nbsp;bytes)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Deciphers a fixed-length block of ciphertext.</div>
+<div class="block">Converts an array of bytes to an array of 32-bit
+ registers (words).</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>byte[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#encipher(byte%5B%5D,byte%5B%5D)" class="member-name-link">encipher</a><wbr>(byte[]&nbsp;plaintext,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#decipher(byte%5B%5D,byte%5B%5D)" class="member-name-link">decipher</a><wbr>(byte[]&nbsp;ciphertext,
  byte[]&nbsp;key)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Deciphers a fixed-length block of ciphertext.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>byte[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#encipher(byte%5B%5D,byte%5B%5D)" class="member-name-link">encipher</a><wbr>(byte[]&nbsp;plaintext,
+ byte[]&nbsp;key)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Enciphers a fixed-length block of plaintext.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getBlockSize()" class="member-name-link">getBlockSize</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getBlockSize()" class="member-name-link">getBlockSize</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the fixed block size this cipher operates on.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private int[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#keySchedule(byte%5B%5D)" class="member-name-link">keySchedule</a><wbr>(byte[]&nbsp;key)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Derives 2r + 4 round keys from the given key, loaded
+ into an array of 32-bit registers.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private byte[]</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#registersToBytes(int%5B%5D)" class="member-name-link">registersToBytes</a><wbr>(int[]&nbsp;registers)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Converts an array of registers to an array of bytes
+ in a little endian fashion.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#rotateRegistersLeft(int%5B%5D)" class="member-name-link">rotateRegistersLeft</a><wbr>(int[]&nbsp;registers)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Rotate/permute the registers to the left.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#rotateRegistersRight(int%5B%5D)" class="member-name-link">rotateRegistersRight</a><wbr>(int[]&nbsp;registers)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Rotate/permute the registers to the left.</div>
 </div>
 </div>
 </div>
@@ -153,15 +219,83 @@ implements <a href="BlockCipher.html" title="interface in edu.boisestate.lowry.c
 </section>
 <section class="details">
 <ul class="details-list">
+<!-- ============ FIELD DETAIL =========== -->
+<li>
+<section class="field-details" id="field-detail">
+<h2>Field Details</h2>
+<ul class="member-list">
+<li>
+<section class="detail" id="BLOCK_SIZE_BYTES">
+<h3>BLOCK_SIZE_BYTES</h3>
+<div class="member-signature"><span class="modifiers">private static final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/RC6Cipher.html#line-20">BLOCK_SIZE_BYTES</a></span></div>
+<div class="block">The block size in bytes. In RC6, the block size is defined as
+ four words (4w). For w = 32 bits (4 bytes), the block size is
+ 16 bytes (128 bits).</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list">
+<li><a href="../../../../constant-values.html#edu.boisestate.lowry.crypto.RC6Cipher.BLOCK_SIZE_BYTES">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="NUM_REGISTERS">
+<h3>NUM_REGISTERS</h3>
+<div class="member-signature"><span class="modifiers">private static final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/RC6Cipher.html#line-24">NUM_REGISTERS</a></span></div>
+<div class="block">The number of registers.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list">
+<li><a href="../../../../constant-values.html#edu.boisestate.lowry.crypto.RC6Cipher.NUM_REGISTERS">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="NUM_ROUNDS">
+<h3>NUM_ROUNDS</h3>
+<div class="member-signature"><span class="modifiers">private static final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/RC6Cipher.html#line-28">NUM_ROUNDS</a></span></div>
+<div class="block">The number of rounds for encryption and decryption.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list">
+<li><a href="../../../../constant-values.html#edu.boisestate.lowry.crypto.RC6Cipher.NUM_ROUNDS">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="keySize">
+<h3>keySize</h3>
+<div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type"><a href="KeySize.html" title="enum class in edu.boisestate.lowry.crypto">KeySize</a></span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/RC6Cipher.html#line-32">keySize</a></span></div>
+<div class="block">The key size, corresponding to the RC6 'b' parameter.</div>
+</section>
+</li>
+</ul>
+</section>
+</li>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <li>
 <section class="constructor-details" id="constructor-detail">
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;()">
+<section class="detail" id="&lt;init&gt;(edu.boisestate.lowry.crypto.KeySize)">
 <h3>RC6Cipher</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/RC6Cipher.html#line-6">RC6Cipher</a></span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/RC6Cipher.html#line-40">RC6Cipher</a></span><wbr><span class="parameters">(<a href="KeySize.html" title="enum class in edu.boisestate.lowry.crypto">KeySize</a>&nbsp;keySize)</span></div>
+<div class="block">Creates an instance of this cipher, configured for
+ the given key size.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>keySize</code> - The key size for this cipher.</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -175,7 +309,7 @@ implements <a href="BlockCipher.html" title="interface in edu.boisestate.lowry.c
 <li>
 <section class="detail" id="encipher(byte[],byte[])">
 <h3>encipher</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">byte[]</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/RC6Cipher.html#line-7">encipher</a></span><wbr><span class="parameters">(byte[]&nbsp;plaintext,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">byte[]</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/RC6Cipher.html#line-44">encipher</a></span><wbr><span class="parameters">(byte[]&nbsp;plaintext,
  byte[]&nbsp;key)</span></div>
 <div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="BlockCipher.html#encipher(byte%5B%5D,byte%5B%5D)">BlockCipher</a></code></span></div>
 <div class="block">Enciphers a fixed-length block of plaintext.</div>
@@ -193,7 +327,7 @@ implements <a href="BlockCipher.html" title="interface in edu.boisestate.lowry.c
 <li>
 <section class="detail" id="decipher(byte[],byte[])">
 <h3>decipher</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">byte[]</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/RC6Cipher.html#line-12">decipher</a></span><wbr><span class="parameters">(byte[]&nbsp;ciphertext,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">byte[]</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/RC6Cipher.html#line-75">decipher</a></span><wbr><span class="parameters">(byte[]&nbsp;ciphertext,
  byte[]&nbsp;key)</span></div>
 <div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="BlockCipher.html#decipher(byte%5B%5D,byte%5B%5D)">BlockCipher</a></code></span></div>
 <div class="block">Deciphers a fixed-length block of ciphertext.</div>
@@ -211,7 +345,7 @@ implements <a href="BlockCipher.html" title="interface in edu.boisestate.lowry.c
 <li>
 <section class="detail" id="getBlockSize()">
 <h3>getBlockSize</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/RC6Cipher.html#line-17">getBlockSize</a></span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/RC6Cipher.html#line-103">getBlockSize</a></span>()</div>
 <div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="BlockCipher.html#getBlockSize()">BlockCipher</a></code></span></div>
 <div class="block">Returns the fixed block size this cipher operates on.</div>
 <dl class="notes">
@@ -219,6 +353,83 @@ implements <a href="BlockCipher.html" title="interface in edu.boisestate.lowry.c
 <dd><code><a href="BlockCipher.html#getBlockSize()">getBlockSize</a></code>&nbsp;in interface&nbsp;<code><a href="BlockCipher.html" title="interface in edu.boisestate.lowry.crypto">BlockCipher</a></code></dd>
 <dt>Returns:</dt>
 <dd>The block size in bytes.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="bytesToRegisters(byte[])">
+<h3>bytesToRegisters</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">int[]</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/RC6Cipher.html#line-123">bytesToRegisters</a></span><wbr><span class="parameters">(byte[]&nbsp;bytes)</span></div>
+<div class="block">Converts an array of bytes to an array of 32-bit
+ registers (words). Bytes are placed in a little-endian
+ fashion. The length of bytes is assumed to be a multiple
+ of four.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>bytes</code> - The array of bytes.</dd>
+<dt>Returns:</dt>
+<dd>an array of 32-bit registers.</dd>
+<dt>Implementation Note:</dt>
+<dd>We use an int array because ints are always
+ 32 bits in Java, exactly what is needed for the
+ w = 32 parameter. Loading the registers little
+ endian corresponds to, for example, how the placement
+ of bytes into A, B, C, D is described, and the same
+ for the array L in the key schedule.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="registersToBytes(int[])">
+<h3>registersToBytes</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">byte[]</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/RC6Cipher.html#line-137">registersToBytes</a></span><wbr><span class="parameters">(int[]&nbsp;registers)</span></div>
+<div class="block">Converts an array of registers to an array of bytes
+ in a little endian fashion.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>registers</code> - The array of registers.</dd>
+<dt>Returns:</dt>
+<dd>an array of bytes.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="rotateRegistersLeft(int[])">
+<h3>rotateRegistersLeft</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/RC6Cipher.html#line-150">rotateRegistersLeft</a></span><wbr><span class="parameters">(int[]&nbsp;registers)</span></div>
+<div class="block">Rotate/permute the registers to the left. This is
+ the same operation as the parallel assignment step
+ (A, B, C, D) = (B, C, D, A) for enciphering.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>registers</code> - The registers.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="rotateRegistersRight(int[])">
+<h3>rotateRegistersRight</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/RC6Cipher.html#line-165">rotateRegistersRight</a></span><wbr><span class="parameters">(int[]&nbsp;registers)</span></div>
+<div class="block">Rotate/permute the registers to the left. This is
+ the same operation as the parallel assignment step
+ (A, B, C, D) = (D, A, B, C) for deciphering.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>registers</code> - The registers.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="keySchedule(byte[])">
+<h3>keySchedule</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">int[]</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/RC6Cipher.html#line-180">keySchedule</a></span><wbr><span class="parameters">(byte[]&nbsp;key)</span></div>
+<div class="block">Derives 2r + 4 round keys from the given key, loaded
+ into an array of 32-bit registers.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - The private key.</dd>
+<dt>Returns:</dt>
+<dd>An array of the round keys as registers.</dd>
 </dl>
 </section>
 </li>

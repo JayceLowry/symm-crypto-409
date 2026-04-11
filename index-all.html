@@ -49,12 +49,33 @@ loadScripts(document, 'script');</script>
 <div class="header">
 <h1>Index</h1>
 </div>
-<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a>
+<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="constant-values.html">Constant&nbsp;Field&nbsp;Values</a>
 <h2 class="title" id="I:B">B</h2>
 <dl class="index">
+<dt><a href="edu/boisestate/lowry/crypto/KeySize.html#BITS_128" class="member-name-link">BITS_128</a> - Enum constant in enum class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/KeySize.html" title="enum class in edu.boisestate.lowry.crypto">KeySize</a></dt>
+<dd>
+<div class="block">128-bit (16-byte) key</div>
+</dd>
+<dt><a href="edu/boisestate/lowry/crypto/KeySize.html#BITS_192" class="member-name-link">BITS_192</a> - Enum constant in enum class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/KeySize.html" title="enum class in edu.boisestate.lowry.crypto">KeySize</a></dt>
+<dd>
+<div class="block">192-bit (24-byte) key</div>
+</dd>
+<dt><a href="edu/boisestate/lowry/crypto/KeySize.html#BITS_256" class="member-name-link">BITS_256</a> - Enum constant in enum class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/KeySize.html" title="enum class in edu.boisestate.lowry.crypto">KeySize</a></dt>
+<dd>
+<div class="block">256-bit (32-byte) key</div>
+</dd>
+<dt><a href="edu/boisestate/lowry/crypto/RC6Cipher.html#BLOCK_SIZE_BYTES" class="member-name-link">BLOCK_SIZE_BYTES</a> - Static variable in class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/RC6Cipher.html" title="class in edu.boisestate.lowry.crypto">RC6Cipher</a></dt>
+<dd>
+<div class="block">The block size in bytes.</div>
+</dd>
 <dt><a href="edu/boisestate/lowry/crypto/BlockCipher.html" class="type-name-link" title="interface in edu.boisestate.lowry.crypto">BlockCipher</a> - Interface in <a href="edu/boisestate/lowry/crypto/package-summary.html">edu.boisestate.lowry.crypto</a></dt>
 <dd>
 <div class="block">Defines a cryptographic block cipher.</div>
+</dd>
+<dt><a href="edu/boisestate/lowry/crypto/RC6Cipher.html#bytesToRegisters(byte%5B%5D)" class="member-name-link">bytesToRegisters(byte[])</a> - Method in class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/RC6Cipher.html" title="class in edu.boisestate.lowry.crypto">RC6Cipher</a></dt>
+<dd>
+<div class="block">Converts an array of bytes to an array of 32-bit
+ registers (words).</div>
 </dd>
 </dl>
 <h2 class="title" id="I:C">C</h2>
@@ -109,14 +130,65 @@ loadScripts(document, 'script');</script>
 <dt><a href="edu/boisestate/lowry/crypto/RC6Cipher.html#getBlockSize()" class="member-name-link">getBlockSize()</a> - Method in class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/RC6Cipher.html" title="class in edu.boisestate.lowry.crypto">RC6Cipher</a></dt>
 <dd>&nbsp;</dd>
 </dl>
+<h2 class="title" id="I:K">K</h2>
+<dl class="index">
+<dt><a href="edu/boisestate/lowry/crypto/RC6Cipher.html#keySchedule(byte%5B%5D)" class="member-name-link">keySchedule(byte[])</a> - Method in class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/RC6Cipher.html" title="class in edu.boisestate.lowry.crypto">RC6Cipher</a></dt>
+<dd>
+<div class="block">Derives 2r + 4 round keys from the given key, loaded
+ into an array of 32-bit registers.</div>
+</dd>
+<dt><a href="edu/boisestate/lowry/crypto/RC6Cipher.html#keySize" class="member-name-link">keySize</a> - Variable in class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/RC6Cipher.html" title="class in edu.boisestate.lowry.crypto">RC6Cipher</a></dt>
+<dd>
+<div class="block">The key size, corresponding to the RC6 'b' parameter.</div>
+</dd>
+<dt><a href="edu/boisestate/lowry/crypto/KeySize.html" class="type-name-link" title="enum class in edu.boisestate.lowry.crypto">KeySize</a> - Enum Class in <a href="edu/boisestate/lowry/crypto/package-summary.html">edu.boisestate.lowry.crypto</a></dt>
+<dd>
+<div class="block">Represents the size for a symmetric secret key.</div>
+</dd>
+<dt><a href="edu/boisestate/lowry/crypto/KeySize.html#%3Cinit%3E(int)" class="member-name-link">KeySize(int)</a> - Constructor for enum class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/KeySize.html" title="enum class in edu.boisestate.lowry.crypto">KeySize</a></dt>
+<dd>
+<div class="block">Internal constructor for KeySize presets.</div>
+</dd>
+</dl>
+<h2 class="title" id="I:N">N</h2>
+<dl class="index">
+<dt><a href="edu/boisestate/lowry/crypto/RC6Cipher.html#NUM_REGISTERS" class="member-name-link">NUM_REGISTERS</a> - Static variable in class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/RC6Cipher.html" title="class in edu.boisestate.lowry.crypto">RC6Cipher</a></dt>
+<dd>
+<div class="block">The number of registers.</div>
+</dd>
+<dt><a href="edu/boisestate/lowry/crypto/RC6Cipher.html#NUM_ROUNDS" class="member-name-link">NUM_ROUNDS</a> - Static variable in class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/RC6Cipher.html" title="class in edu.boisestate.lowry.crypto">RC6Cipher</a></dt>
+<dd>
+<div class="block">The number of rounds for encryption and decryption.</div>
+</dd>
+<dt><a href="edu/boisestate/lowry/crypto/KeySize.html#numBytes" class="member-name-link">numBytes</a> - Variable in enum class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/KeySize.html" title="enum class in edu.boisestate.lowry.crypto">KeySize</a></dt>
+<dd>
+<div class="block">The key size in bytes.</div>
+</dd>
+</dl>
 <h2 class="title" id="I:R">R</h2>
 <dl class="index">
 <dt><a href="edu/boisestate/lowry/crypto/RC6Cipher.html" class="type-name-link" title="class in edu.boisestate.lowry.crypto">RC6Cipher</a> - Class in <a href="edu/boisestate/lowry/crypto/package-summary.html">edu.boisestate.lowry.crypto</a></dt>
 <dd>
-<div class="block">TODO</div>
+<div class="block">An implementation of the RC6-32/20/b block cipher.</div>
 </dd>
-<dt><a href="edu/boisestate/lowry/crypto/RC6Cipher.html#%3Cinit%3E()" class="member-name-link">RC6Cipher()</a> - Constructor for class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/RC6Cipher.html" title="class in edu.boisestate.lowry.crypto">RC6Cipher</a></dt>
-<dd>&nbsp;</dd>
+<dt><a href="edu/boisestate/lowry/crypto/RC6Cipher.html#%3Cinit%3E(edu.boisestate.lowry.crypto.KeySize)" class="member-name-link">RC6Cipher(KeySize)</a> - Constructor for class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/RC6Cipher.html" title="class in edu.boisestate.lowry.crypto">RC6Cipher</a></dt>
+<dd>
+<div class="block">Creates an instance of this cipher, configured for
+ the given key size.</div>
+</dd>
+<dt><a href="edu/boisestate/lowry/crypto/RC6Cipher.html#registersToBytes(int%5B%5D)" class="member-name-link">registersToBytes(int[])</a> - Method in class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/RC6Cipher.html" title="class in edu.boisestate.lowry.crypto">RC6Cipher</a></dt>
+<dd>
+<div class="block">Converts an array of registers to an array of bytes
+ in a little endian fashion.</div>
+</dd>
+<dt><a href="edu/boisestate/lowry/crypto/RC6Cipher.html#rotateRegistersLeft(int%5B%5D)" class="member-name-link">rotateRegistersLeft(int[])</a> - Method in class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/RC6Cipher.html" title="class in edu.boisestate.lowry.crypto">RC6Cipher</a></dt>
+<dd>
+<div class="block">Rotate/permute the registers to the left.</div>
+</dd>
+<dt><a href="edu/boisestate/lowry/crypto/RC6Cipher.html#rotateRegistersRight(int%5B%5D)" class="member-name-link">rotateRegistersRight(int[])</a> - Method in class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/RC6Cipher.html" title="class in edu.boisestate.lowry.crypto">RC6Cipher</a></dt>
+<dd>
+<div class="block">Rotate/permute the registers to the left.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:S">S</h2>
 <dl class="index">
@@ -125,7 +197,19 @@ loadScripts(document, 'script');</script>
 <div class="block">Defines a symmetric-key encryption/decryption scheme.</div>
 </dd>
 </dl>
-<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a></main>
+<h2 class="title" id="I:V">V</h2>
+<dl class="index">
+<dt><a href="edu/boisestate/lowry/crypto/KeySize.html#valueOf(java.lang.String)" class="member-name-link">valueOf(String)</a> - Static method in enum class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/KeySize.html" title="enum class in edu.boisestate.lowry.crypto">KeySize</a></dt>
+<dd>
+<div class="block">Returns the enum constant of this class with the specified name.</div>
+</dd>
+<dt><a href="edu/boisestate/lowry/crypto/KeySize.html#values()" class="member-name-link">values()</a> - Static method in enum class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/KeySize.html" title="enum class in edu.boisestate.lowry.crypto">KeySize</a></dt>
+<dd>
+<div class="block">Returns an array containing the constants of this enum class, in
+the order they are declared.</div>
+</dd>
+</dl>
+<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="constant-values.html">Constant&nbsp;Field&nbsp;Values</a></main>
 </div>
 </div>
 </body>
