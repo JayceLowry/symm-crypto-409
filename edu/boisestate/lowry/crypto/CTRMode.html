@@ -38,7 +38,7 @@ loadScripts(document, 'script');</script>
 <p>Summary:</p>
 <ul>
 <li>Nested</li>
-<li>Field</li>
+<li><a href="#field-summary">Field</a></li>
 <li><a href="#constructor-summary">Constr</a></li>
 <li><a href="#method-summary">Method</a></li>
 </ul>
@@ -46,7 +46,7 @@ loadScripts(document, 'script');</script>
 <li>
 <p>Detail:</p>
 <ul>
-<li>Field</li>
+<li><a href="#field-detail">Field</a></li>
 <li><a href="#constructor-detail">Constr</a></li>
 <li><a href="#method-detail">Method</a></li>
 </ul>
@@ -58,13 +58,13 @@ loadScripts(document, 'script');</script>
 <ul class="sub-nav-list">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field-summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor-summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method-summary">Method</a></li>
 </ul>
 <ul class="sub-nav-list">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field-detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor-detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method-detail">Method</a></li>
 </ul>
@@ -93,13 +93,35 @@ loadScripts(document, 'script');</script>
 <dd><code><a href="SymmetricCipher.html" title="interface in edu.boisestate.lowry.crypto">SymmetricCipher</a></code></dd>
 </dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public class </span><span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/CTRMode.html#line-6">CTRMode</a></span>
+<div class="type-signature"><span class="modifiers">public class </span><span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/CTRMode.html#line-11">CTRMode</a></span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="SymmetricCipher.html" title="interface in edu.boisestate.lowry.crypto">SymmetricCipher</a></span></div>
-<div class="block">TODO</div>
+<div class="block">An implementation of the Counter (CTR) mode of operation.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
+<!-- =========== FIELD SUMMARY =========== -->
+<li>
+<section class="field-summary" id="field-summary">
+<h2>Field Summary</h2>
+<div class="caption"><span>Fields</span></div>
+<div class="summary-table three-column-summary">
+<div class="table-header col-first">Modifier and Type</div>
+<div class="table-header col-second">Field</div>
+<div class="table-header col-last">Description</div>
+<div class="col-first even-row-color"><code>private final <a href="BlockCipher.html" title="interface in edu.boisestate.lowry.crypto">BlockCipher</a></code></div>
+<div class="col-second even-row-color"><code><a href="#blockCipher" class="member-name-link">blockCipher</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The underlying block cipher used.</div>
+</div>
+<div class="col-first odd-row-color"><code>private final int</code></div>
+<div class="col-second odd-row-color"><code><a href="#blockSize" class="member-name-link">blockSize</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">The underlying block cipher's block size.</div>
+</div>
+</div>
+</section>
+</li>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <li>
 <section class="constructor-summary" id="constructor-summary">
@@ -110,7 +132,8 @@ implements <a href="SymmetricCipher.html" title="interface in edu.boisestate.low
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(edu.boisestate.lowry.crypto.BlockCipher)" class="member-name-link">CTRMode</a><wbr>(<a href="BlockCipher.html" title="interface in edu.boisestate.lowry.crypto">BlockCipher</a>&nbsp;cipher)</code></div>
 <div class="col-last even-row-color">
-<div class="block">TODO Docs</div>
+<div class="block">Creates a CTRMode instance with the given block
+ cipher as the underlying cipher.</div>
 </div>
 </div>
 </section>
@@ -138,6 +161,22 @@ implements <a href="SymmetricCipher.html" title="interface in edu.boisestate.low
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Encrypts the provided plaintext using a symmetric key.</div>
 </div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#incrementBlock(byte%5B%5D,int,int)" class="member-name-link">incrementBlock</a><wbr>(byte[]&nbsp;input,
+ int&nbsp;start,
+ int&nbsp;end)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Increments a specific sub-block of the given bytes, treating it as an
+ unsigned integer (big endian).</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private byte[]</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#runCTR(byte%5B%5D,byte%5B%5D,byte%5B%5D)" class="member-name-link">runCTR</a><wbr>(byte[]&nbsp;text,
+ byte[]&nbsp;key,
+ byte[]&nbsp;counter)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Runs the CTR operation on the given text, using a secret key
+ and initial counter.</div>
+</div>
 </div>
 </div>
 </div>
@@ -150,6 +189,28 @@ implements <a href="SymmetricCipher.html" title="interface in edu.boisestate.low
 </section>
 <section class="details">
 <ul class="details-list">
+<!-- ============ FIELD DETAIL =========== -->
+<li>
+<section class="field-details" id="field-detail">
+<h2>Field Details</h2>
+<ul class="member-list">
+<li>
+<section class="detail" id="blockCipher">
+<h3>blockCipher</h3>
+<div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type"><a href="BlockCipher.html" title="interface in edu.boisestate.lowry.crypto">BlockCipher</a></span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/CTRMode.html#line-15">blockCipher</a></span></div>
+<div class="block">The underlying block cipher used.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="blockSize">
+<h3>blockSize</h3>
+<div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/CTRMode.html#line-19">blockSize</a></span></div>
+<div class="block">The underlying block cipher's block size.</div>
+</section>
+</li>
+</ul>
+</section>
+</li>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <li>
 <section class="constructor-details" id="constructor-detail">
@@ -158,11 +219,12 @@ implements <a href="SymmetricCipher.html" title="interface in edu.boisestate.low
 <li>
 <section class="detail" id="&lt;init&gt;(edu.boisestate.lowry.crypto.BlockCipher)">
 <h3>CTRMode</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/CTRMode.html#line-12">CTRMode</a></span><wbr><span class="parameters">(<a href="BlockCipher.html" title="interface in edu.boisestate.lowry.crypto">BlockCipher</a>&nbsp;cipher)</span></div>
-<div class="block">TODO Docs</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/CTRMode.html#line-27">CTRMode</a></span><wbr><span class="parameters">(<a href="BlockCipher.html" title="interface in edu.boisestate.lowry.crypto">BlockCipher</a>&nbsp;cipher)</span></div>
+<div class="block">Creates a CTRMode instance with the given block
+ cipher as the underlying cipher.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>cipher</code> - </dd>
+<dd><code>cipher</code> - The underlying block cipher for this instance.</dd>
 </dl>
 </section>
 </li>
@@ -177,7 +239,7 @@ implements <a href="SymmetricCipher.html" title="interface in edu.boisestate.low
 <li>
 <section class="detail" id="encrypt(byte[],byte[])">
 <h3>encrypt</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">byte[]</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/CTRMode.html#line-16">encrypt</a></span><wbr><span class="parameters">(byte[]&nbsp;plaintext,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">byte[]</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/CTRMode.html#line-32">encrypt</a></span><wbr><span class="parameters">(byte[]&nbsp;plaintext,
  byte[]&nbsp;key)</span></div>
 <div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="SymmetricCipher.html#encrypt(byte%5B%5D,byte%5B%5D)">SymmetricCipher</a></code></span></div>
 <div class="block">Encrypts the provided plaintext using a symmetric key.</div>
@@ -195,7 +257,7 @@ implements <a href="SymmetricCipher.html" title="interface in edu.boisestate.low
 <li>
 <section class="detail" id="decrypt(byte[],byte[])">
 <h3>decrypt</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">byte[]</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/CTRMode.html#line-21">decrypt</a></span><wbr><span class="parameters">(byte[]&nbsp;ciphertext,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">byte[]</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/CTRMode.html#line-49">decrypt</a></span><wbr><span class="parameters">(byte[]&nbsp;ciphertext,
  byte[]&nbsp;key)</span></div>
 <div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="SymmetricCipher.html#decrypt(byte%5B%5D,byte%5B%5D)">SymmetricCipher</a></code></span></div>
 <div class="block">Decrypts the provided ciphertext using a symmetric key.</div>
@@ -207,6 +269,45 @@ implements <a href="SymmetricCipher.html" title="interface in edu.boisestate.low
 <dd><code>key</code> - The secret key for decryption.</dd>
 <dt>Returns:</dt>
 <dd>The resulting plaintext.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="runCTR(byte[],byte[],byte[])">
+<h3>runCTR</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">byte[]</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/CTRMode.html#line-72">runCTR</a></span><wbr><span class="parameters">(byte[]&nbsp;text,
+ byte[]&nbsp;key,
+ byte[]&nbsp;counter)</span></div>
+<div class="block">Runs the CTR operation on the given text, using a secret key
+ and initial counter.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>text</code> - The plaintext or ciphertext.</dd>
+<dd><code>key</code> - The secret key.</dd>
+<dd><code>counter</code> - The initial counter.</dd>
+<dt>Returns:</dt>
+<dd>The resulting processed text.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="incrementBlock(byte[],int,int)">
+<h3>incrementBlock</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/CTRMode.html#line-105">incrementBlock</a></span><wbr><span class="parameters">(byte[]&nbsp;input,
+ int&nbsp;start,
+ int&nbsp;end)</span></div>
+<div class="block">Increments a specific sub-block of the given bytes, treating it as an
+ unsigned integer (big endian). This is essentially a ripple-carry addition
+ of the sub-block and 1.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>input</code> - The input block containing the sub-block to increment.</dd>
+<dd><code>start</code> - The index of the most significant byte of the sub-block, inclusive.</dd>
+<dd><code>end</code> - The index of the least significant byte of the sub-block, exclusive.</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - If the input is null, the indices are out of bounds,
+ or the ending index is before the starting index.</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/IllegalStateException.html" title="class or interface in java.lang" class="external-link">IllegalStateException</a></code> - If the entire block overflows.</dd>
 </dl>
 </section>
 </li>

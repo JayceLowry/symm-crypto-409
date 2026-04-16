@@ -49,7 +49,7 @@ loadScripts(document, 'script');</script>
 <div class="header">
 <h1>Index</h1>
 </div>
-<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="constant-values.html">Constant&nbsp;Field&nbsp;Values</a>
+<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="constant-values.html">Constant&nbsp;Field&nbsp;Values</a>
 <h2 class="title" id="I:B">B</h2>
 <dl class="index">
 <dt><a href="edu/boisestate/lowry/crypto/KeySize.html#BITS_128" class="member-name-link">BITS_128</a> - Enum constant in enum class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/KeySize.html" title="enum class in edu.boisestate.lowry.crypto">KeySize</a></dt>
@@ -68,9 +68,17 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">The block size in bytes.</div>
 </dd>
+<dt><a href="edu/boisestate/lowry/crypto/CTRMode.html#blockCipher" class="member-name-link">blockCipher</a> - Variable in class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/CTRMode.html" title="class in edu.boisestate.lowry.crypto">CTRMode</a></dt>
+<dd>
+<div class="block">The underlying block cipher used.</div>
+</dd>
 <dt><a href="edu/boisestate/lowry/crypto/BlockCipher.html" class="type-name-link" title="interface in edu.boisestate.lowry.crypto">BlockCipher</a> - Interface in <a href="edu/boisestate/lowry/crypto/package-summary.html">edu.boisestate.lowry.crypto</a></dt>
 <dd>
 <div class="block">Defines a cryptographic block cipher.</div>
+</dd>
+<dt><a href="edu/boisestate/lowry/crypto/CTRMode.html#blockSize" class="member-name-link">blockSize</a> - Variable in class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/CTRMode.html" title="class in edu.boisestate.lowry.crypto">CTRMode</a></dt>
+<dd>
+<div class="block">The underlying block cipher's block size.</div>
 </dd>
 <dt><a href="edu/boisestate/lowry/crypto/RC6Cipher.html#bytesToRegisters(byte%5B%5D)" class="member-name-link">bytesToRegisters(byte[])</a> - Method in class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/RC6Cipher.html" title="class in edu.boisestate.lowry.crypto">RC6Cipher</a></dt>
 <dd>
@@ -82,11 +90,12 @@ loadScripts(document, 'script');</script>
 <dl class="index">
 <dt><a href="edu/boisestate/lowry/crypto/CTRMode.html" class="type-name-link" title="class in edu.boisestate.lowry.crypto">CTRMode</a> - Class in <a href="edu/boisestate/lowry/crypto/package-summary.html">edu.boisestate.lowry.crypto</a></dt>
 <dd>
-<div class="block">TODO</div>
+<div class="block">An implementation of the Counter (CTR) mode of operation.</div>
 </dd>
 <dt><a href="edu/boisestate/lowry/crypto/CTRMode.html#%3Cinit%3E(edu.boisestate.lowry.crypto.BlockCipher)" class="member-name-link">CTRMode(BlockCipher)</a> - Constructor for class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/CTRMode.html" title="class in edu.boisestate.lowry.crypto">CTRMode</a></dt>
 <dd>
-<div class="block">TODO Docs</div>
+<div class="block">Creates a CTRMode instance with the given block
+ cipher as the underlying cipher.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:D">D</h2>
@@ -129,6 +138,14 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="edu/boisestate/lowry/crypto/RC6Cipher.html#getBlockSize()" class="member-name-link">getBlockSize()</a> - Method in class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/RC6Cipher.html" title="class in edu.boisestate.lowry.crypto">RC6Cipher</a></dt>
 <dd>&nbsp;</dd>
+</dl>
+<h2 class="title" id="I:I">I</h2>
+<dl class="index">
+<dt><a href="edu/boisestate/lowry/crypto/CTRMode.html#incrementBlock(byte%5B%5D,int,int)" class="member-name-link">incrementBlock(byte[], int, int)</a> - Method in class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/CTRMode.html" title="class in edu.boisestate.lowry.crypto">CTRMode</a></dt>
+<dd>
+<div class="block">Increments a specific sub-block of the given bytes, treating it as an
+ unsigned integer (big endian).</div>
+</dd>
 </dl>
 <h2 class="title" id="I:K">K</h2>
 <dl class="index">
@@ -189,6 +206,11 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Rotate/permute the registers to the left.</div>
 </dd>
+<dt><a href="edu/boisestate/lowry/crypto/CTRMode.html#runCTR(byte%5B%5D,byte%5B%5D,byte%5B%5D)" class="member-name-link">runCTR(byte[], byte[], byte[])</a> - Method in class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/CTRMode.html" title="class in edu.boisestate.lowry.crypto">CTRMode</a></dt>
+<dd>
+<div class="block">Runs the CTR operation on the given text, using a secret key
+ and initial counter.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:S">S</h2>
 <dl class="index">
@@ -209,7 +231,7 @@ loadScripts(document, 'script');</script>
 the order they are declared.</div>
 </dd>
 </dl>
-<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="constant-values.html">Constant&nbsp;Field&nbsp;Values</a></main>
+<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="constant-values.html">Constant&nbsp;Field&nbsp;Values</a></main>
 </div>
 </div>
 </body>
