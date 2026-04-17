@@ -6,3 +6,5 @@ plugins {
 rootProject.name = "symm-crypto-409"
 include("lib")
 include("demos")
+include("demos:jmh")
+findProject(":demos:jmh")?.name = "jmh"
