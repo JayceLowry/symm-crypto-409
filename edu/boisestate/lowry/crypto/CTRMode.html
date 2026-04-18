@@ -109,12 +109,12 @@ implements <a href="SymmetricCipher.html" title="interface in edu.boisestate.low
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>private final <a href="BlockCipher.html" title="interface in edu.boisestate.lowry.crypto">BlockCipher</a></code></div>
+<div class="col-first even-row-color"><code>protected final <a href="BlockCipher.html" title="interface in edu.boisestate.lowry.crypto">BlockCipher</a></code></div>
 <div class="col-second even-row-color"><code><a href="#blockCipher" class="member-name-link">blockCipher</a></code></div>
 <div class="col-last even-row-color">
 <div class="block">The underlying block cipher used.</div>
 </div>
-<div class="col-first odd-row-color"><code>private final int</code></div>
+<div class="col-first odd-row-color"><code>protected final int</code></div>
 <div class="col-second odd-row-color"><code><a href="#blockSize" class="member-name-link">blockSize</a></code></div>
 <div class="col-last odd-row-color">
 <div class="block">The underlying block cipher's block size.</div>
@@ -169,10 +169,10 @@ implements <a href="SymmetricCipher.html" title="interface in edu.boisestate.low
 <div class="block">Increments a specific sub-block of the given bytes, treating it as an
  unsigned integer (big endian).</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private byte[]</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#runCTR(byte%5B%5D,byte%5B%5D,byte%5B%5D)" class="member-name-link">runCTR</a><wbr>(byte[]&nbsp;text,
  byte[]&nbsp;key,
- byte[]&nbsp;counter)</code></div>
+ byte[]&nbsp;iv)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Runs the CTR operation on the given text, using a secret key
  and initial counter.</div>
@@ -197,14 +197,14 @@ implements <a href="SymmetricCipher.html" title="interface in edu.boisestate.low
 <li>
 <section class="detail" id="blockCipher">
 <h3>blockCipher</h3>
-<div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type"><a href="BlockCipher.html" title="interface in edu.boisestate.lowry.crypto">BlockCipher</a></span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/CTRMode.html#line-15">blockCipher</a></span></div>
+<div class="member-signature"><span class="modifiers">protected final</span>&nbsp;<span class="return-type"><a href="BlockCipher.html" title="interface in edu.boisestate.lowry.crypto">BlockCipher</a></span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/CTRMode.html#line-15">blockCipher</a></span></div>
 <div class="block">The underlying block cipher used.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="blockSize">
 <h3>blockSize</h3>
-<div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/CTRMode.html#line-19">blockSize</a></span></div>
+<div class="member-signature"><span class="modifiers">protected final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/CTRMode.html#line-19">blockSize</a></span></div>
 <div class="block">The underlying block cipher's block size.</div>
 </section>
 </li>
@@ -257,7 +257,7 @@ implements <a href="SymmetricCipher.html" title="interface in edu.boisestate.low
 <li>
 <section class="detail" id="decrypt(byte[],byte[])">
 <h3>decrypt</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">byte[]</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/CTRMode.html#line-49">decrypt</a></span><wbr><span class="parameters">(byte[]&nbsp;ciphertext,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">byte[]</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/CTRMode.html#line-52">decrypt</a></span><wbr><span class="parameters">(byte[]&nbsp;ciphertext,
  byte[]&nbsp;key)</span></div>
 <div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="SymmetricCipher.html#decrypt(byte%5B%5D,byte%5B%5D)">SymmetricCipher</a></code></span></div>
 <div class="block">Decrypts the provided ciphertext using a symmetric key.</div>
@@ -275,25 +275,24 @@ implements <a href="SymmetricCipher.html" title="interface in edu.boisestate.low
 <li>
 <section class="detail" id="runCTR(byte[],byte[],byte[])">
 <h3>runCTR</h3>
-<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">byte[]</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/CTRMode.html#line-72">runCTR</a></span><wbr><span class="parameters">(byte[]&nbsp;text,
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/CTRMode.html#line-78">runCTR</a></span><wbr><span class="parameters">(byte[]&nbsp;text,
  byte[]&nbsp;key,
- byte[]&nbsp;counter)</span></div>
+ byte[]&nbsp;iv)</span></div>
 <div class="block">Runs the CTR operation on the given text, using a secret key
- and initial counter.</div>
+ and initial counter. The data in text is modified in-place,
+ becoming the encrypted or decrypted text.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>text</code> - The plaintext or ciphertext.</dd>
 <dd><code>key</code> - The secret key.</dd>
-<dd><code>counter</code> - The initial counter.</dd>
-<dt>Returns:</dt>
-<dd>The resulting processed text.</dd>
+<dd><code>iv</code> - The initial counter.</dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="incrementBlock(byte[],int,int)">
 <h3>incrementBlock</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/CTRMode.html#line-105">incrementBlock</a></span><wbr><span class="parameters">(byte[]&nbsp;input,
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name"><a href="../../../../src-html/edu/boisestate/lowry/crypto/CTRMode.html#line-106">incrementBlock</a></span><wbr><span class="parameters">(byte[]&nbsp;input,
  int&nbsp;start,
  int&nbsp;end)</span></div>
 <div class="block">Increments a specific sub-block of the given bytes, treating it as an

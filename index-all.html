@@ -146,6 +146,11 @@ loadScripts(document, 'script');</script>
 <div class="block">Increments a specific sub-block of the given bytes, treating it as an
  unsigned integer (big endian).</div>
 </dd>
+<dt><a href="edu/boisestate/lowry/crypto/RC6Cipher.html#initKey(byte%5B%5D)" class="member-name-link">initKey(byte[])</a> - Method in class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/RC6Cipher.html" title="class in edu.boisestate.lowry.crypto">RC6Cipher</a></dt>
+<dd>
+<div class="block">Preemptively calls the key schedule with the given key
+ for the purpose of performing bulk encryption.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:K">K</h2>
 <dl class="index">
@@ -198,6 +203,10 @@ loadScripts(document, 'script');</script>
 <div class="block">Converts an array of registers to an array of bytes
  in a little endian fashion.</div>
 </dd>
+<dt><a href="edu/boisestate/lowry/crypto/RC6Cipher.html#resetKey()" class="member-name-link">resetKey()</a> - Method in class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/RC6Cipher.html" title="class in edu.boisestate.lowry.crypto">RC6Cipher</a></dt>
+<dd>
+<div class="block">Resets the stored key to nothing.</div>
+</dd>
 <dt><a href="edu/boisestate/lowry/crypto/RC6Cipher.html#rotateRegistersLeft(int%5B%5D)" class="member-name-link">rotateRegistersLeft(int[])</a> - Method in class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/RC6Cipher.html" title="class in edu.boisestate.lowry.crypto">RC6Cipher</a></dt>
 <dd>
 <div class="block">Rotate/permute the registers to the left.</div>
@@ -205,6 +214,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="edu/boisestate/lowry/crypto/RC6Cipher.html#rotateRegistersRight(int%5B%5D)" class="member-name-link">rotateRegistersRight(int[])</a> - Method in class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/RC6Cipher.html" title="class in edu.boisestate.lowry.crypto">RC6Cipher</a></dt>
 <dd>
 <div class="block">Rotate/permute the registers to the left.</div>
+</dd>
+<dt><a href="edu/boisestate/lowry/crypto/RC6Cipher.html#roundKeys" class="member-name-link">roundKeys</a> - Variable in class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/RC6Cipher.html" title="class in edu.boisestate.lowry.crypto">RC6Cipher</a></dt>
+<dd>
+<div class="block">The round keys S[0, ..., 2r + 3].</div>
 </dd>
 <dt><a href="edu/boisestate/lowry/crypto/CTRMode.html#runCTR(byte%5B%5D,byte%5B%5D,byte%5B%5D)" class="member-name-link">runCTR(byte[], byte[], byte[])</a> - Method in class edu.boisestate.lowry.crypto.<a href="edu/boisestate/lowry/crypto/CTRMode.html" title="class in edu.boisestate.lowry.crypto">CTRMode</a></dt>
 <dd>
