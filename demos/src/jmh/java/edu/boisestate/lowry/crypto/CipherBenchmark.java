@@ -1,7 +1,5 @@
-package edu.boisestate.lowry.crypto.benchmark;
+package edu.boisestate.lowry.crypto;
 
-
-import edu.boisestate.lowry.crypto.KeySize;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 
@@ -17,12 +15,12 @@ import java.util.Random;
 @State(Scope.Benchmark)
 public abstract class CipherBenchmark {
     /**
-     * Key sizes
+     * Key sizes to test
      */
     @Param({"BITS_128", "BITS_192", "BITS_256"})
     public KeySize keySize;
     /**
-     * Data sizes 1KB, 1MB, 10MB
+     * Data sizes to test (1KB, 1MB, 10MB)
      */
     @Param({"1024", "1048576", "10485760"})
     public int dataSize;

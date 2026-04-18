@@ -30,6 +30,10 @@ public class RC6Cipher implements BlockCipher {
      * The key size, corresponding to the RC6 'b' parameter.
      */
     private final KeySize keySize;
+    /**
+     * The round keys S[0, ..., 2r + 3].
+     */
+    private int[] roundKeys;
 
     /**
      * Creates an instance of this cipher, configured for
@@ -39,18 +43,19 @@ public class RC6Cipher implements BlockCipher {
      */
     public RC6Cipher(KeySize keySize) {
         this.keySize = keySize;
+        roundKeys = null;
     }
 
     @Override
     public byte[] encipher(byte[] plaintext, byte[] key) {
         // Validate inputs
-        if (plaintext == null || key == null || plaintext.length != BLOCK_SIZE_BYTES) {
+        if (plaintext == null || plaintext.length != BLOCK_SIZE_BYTES) {
             throw new IllegalArgumentException();
-        } else if (key.length != keySize.numBytes) {
-            throw new UnsupportedOperationException();
         }
-        // Compute round keys and load plaintext into registers
-        int[] roundKeys = keySchedule(key); // The keys S[0, ..., 2r + 3]
+        // Initialize round keys if necessary and load plaintext into registers
+        if (roundKeys == null) {
+            roundKeys = keySchedule(key);
+        }
         int[] registers = bytesToRegisters(plaintext); // The registers [A, B, C, D]
 
         // Pre-whitening
@@ -75,13 +80,15 @@ public class RC6Cipher implements BlockCipher {
     @Override
     public byte[] decipher(byte[] ciphertext, byte[] key) {
         // Validate inputs
-        if (ciphertext == null || key == null || ciphertext.length != BLOCK_SIZE_BYTES) {
+        if (ciphertext == null || ciphertext.length != BLOCK_SIZE_BYTES) {
             throw new IllegalArgumentException();
         } else if (key.length != keySize.numBytes) {
             throw new UnsupportedOperationException();
         }
-        // Compute round keys and load ciphertext into registers
-        int[] roundKeys = keySchedule(key); // The keys S[0, ..., 2r + 3]
+        // Initialize round keys if necessary and load ciphertext into registers
+        if (roundKeys == null) {
+            roundKeys = keySchedule(key);
+        }
         int[] registers = bytesToRegisters(ciphertext); // The registers [A, B, C, D]
 
         registers[2] = registers[2] - roundKeys[2 * NUM_ROUNDS + 3];
@@ -103,6 +110,33 @@ public class RC6Cipher implements BlockCipher {
     @Override
     public int getBlockSize() {
         return BLOCK_SIZE_BYTES;
+    }
+
+    /**
+     * Preemptively calls the key schedule with the given key
+     * for the purpose of performing bulk encryption. A call
+     * to this will cause they key parameter for encipher()
+     * and decipher() to be ignored.
+     *
+     * @param key The key to initialize.
+     */
+    public void initKey(byte[] key) {
+        if (key == null) {
+            throw new IllegalArgumentException();
+        } else if (key.length != keySize.numBytes) {
+            throw new UnsupportedOperationException();
+        }
+        this.roundKeys = keySchedule(key);
+    }
+
+    /**
+     * Resets the stored key to nothing. A call to this
+     * will cause the key parameter for encipher() and
+     * decipher() to be usable following a call to
+     * initKey().
+     */
+    public void resetKey() {
+        this.roundKeys = null;
     }
 
     /**

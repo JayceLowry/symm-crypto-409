@@ -12,11 +12,11 @@ public class CTRMode implements SymmetricCipher {
     /**
      * The underlying block cipher used.
      */
-    private final BlockCipher blockCipher;
+    protected final BlockCipher blockCipher;
     /**
      * The underlying block cipher's block size.
      */
-    private final int blockSize;
+    protected final int blockSize;
 
     /**
      * Creates a CTRMode instance with the given block
@@ -38,8 +38,11 @@ public class CTRMode implements SymmetricCipher {
         // Prepare the counter with the nonce as the first half
         byte[] counter = new byte[blockSize];
         System.arraycopy(nonce, 0, counter, 0, nonce.length);
+        // Copy plaintext to working ciphertext array
+        byte[] ciphertext = new byte[plaintext.length];
+        System.arraycopy(plaintext, 0, ciphertext, 0, plaintext.length);
         // Encrypt
-        byte[] ciphertext = runCTR(plaintext, key, counter);
+        runCTR(ciphertext, key, counter);
         // Prepend nonce to the ciphertext
         ByteBuffer buffer = ByteBuffer.allocate(nonce.length + ciphertext.length);
         buffer.put(nonce).put(ciphertext);
@@ -57,37 +60,35 @@ public class CTRMode implements SymmetricCipher {
         byte[] counter = new byte[blockSize];
         System.arraycopy(nonce, 0, counter, 0, nonce.length);
         // Decrypt
-        return runCTR(encryptedData, key, counter);
+        byte[] plaintext = new byte[encryptedData.length];
+        System.arraycopy(encryptedData, 0, plaintext, 0, encryptedData.length);
+        runCTR(plaintext, key, counter);
+        return plaintext;
     }
 
     /**
      * Runs the CTR operation on the given text, using a secret key
-     * and initial counter.
+     * and initial counter. The data in text is modified in-place,
+     * becoming the encrypted or decrypted text.
      *
      * @param text The plaintext or ciphertext.
      * @param key The secret key.
-     * @param counter The initial counter.
-     * @return The resulting processed text.
+     * @param iv The initial counter.
      */
-    private byte[] runCTR(byte[] text, byte[] key, byte[] counter) {
-        // Copy data into a working output array
-        byte[] out = new byte[text.length];
-        System.arraycopy(text, 0, out, 0, text.length);
-
+    protected void runCTR(byte[] text, byte[] key, byte[] iv) {
         // XOR text data with the encrypted counter. Once each position
         // of the current counter has been seen, re-encrypt it and increment.
         byte[] encryptedCounter = new byte[0];
         int j = blockSize;
         for (int i = 0; i < text.length; i++) {
             if (j == blockSize) {
-                encryptedCounter = blockCipher.encipher(counter, key);
-                incrementBlock(counter, blockSize / 2, counter.length);
+                encryptedCounter = blockCipher.encipher(iv, key);
+                incrementBlock(iv, blockSize / 2, iv.length);
                 j = 0;
             }
-            out[i] ^= encryptedCounter[j];
+            text[i] ^= encryptedCounter[j];
             j++;
         }
-        return out;
     }
 
     /**
