@@ -1,0 +1,19 @@
+"Benchmark","Mode","Threads","Samples","Score","Score Error (99.9%)","Unit","Param: dataSize","Param: keySize"
+"edu.boisestate.lowry.crypto.AESCTRBenchmark.testThroughput","thrpt",1,5,181842.511282,2788.528037,"ops/s",1024,BITS_128
+"edu.boisestate.lowry.crypto.AESCTRBenchmark.testThroughput","thrpt",1,5,159411.042806,6849.529879,"ops/s",1024,BITS_192
+"edu.boisestate.lowry.crypto.AESCTRBenchmark.testThroughput","thrpt",1,5,142848.673242,3597.862371,"ops/s",1024,BITS_256
+"edu.boisestate.lowry.crypto.AESCTRBenchmark.testThroughput","thrpt",1,5,180.247758,4.540667,"ops/s",1048576,BITS_128
+"edu.boisestate.lowry.crypto.AESCTRBenchmark.testThroughput","thrpt",1,5,158.656850,1.803395,"ops/s",1048576,BITS_192
+"edu.boisestate.lowry.crypto.AESCTRBenchmark.testThroughput","thrpt",1,5,141.272114,3.231457,"ops/s",1048576,BITS_256
+"edu.boisestate.lowry.crypto.AESCTRBenchmark.testThroughput","thrpt",1,5,17.994690,0.210966,"ops/s",10485760,BITS_128
+"edu.boisestate.lowry.crypto.AESCTRBenchmark.testThroughput","thrpt",1,5,15.801271,0.189217,"ops/s",10485760,BITS_192
+"edu.boisestate.lowry.crypto.AESCTRBenchmark.testThroughput","thrpt",1,5,14.191302,0.393112,"ops/s",10485760,BITS_256
+"edu.boisestate.lowry.crypto.RC6CTRBenchmark.testThroughput","thrpt",1,5,115991.755305,2711.310759,"ops/s",1024,BITS_128
+"edu.boisestate.lowry.crypto.RC6CTRBenchmark.testThroughput","thrpt",1,5,113233.260349,11420.303346,"ops/s",1024,BITS_192
+"edu.boisestate.lowry.crypto.RC6CTRBenchmark.testThroughput","thrpt",1,5,114573.000172,725.067543,"ops/s",1024,BITS_256
+"edu.boisestate.lowry.crypto.RC6CTRBenchmark.testThroughput","thrpt",1,5,117.403375,2.020457,"ops/s",1048576,BITS_128
+"edu.boisestate.lowry.crypto.RC6CTRBenchmark.testThroughput","thrpt",1,5,116.928663,1.831867,"ops/s",1048576,BITS_192
+"edu.boisestate.lowry.crypto.RC6CTRBenchmark.testThroughput","thrpt",1,5,117.349732,1.405601,"ops/s",1048576,BITS_256
+"edu.boisestate.lowry.crypto.RC6CTRBenchmark.testThroughput","thrpt",1,5,12.344068,0.217038,"ops/s",10485760,BITS_128
+"edu.boisestate.lowry.crypto.RC6CTRBenchmark.testThroughput","thrpt",1,5,11.665583,0.325582,"ops/s",10485760,BITS_192
+"edu.boisestate.lowry.crypto.RC6CTRBenchmark.testThroughput","thrpt",1,5,11.752138,0.079512,"ops/s",10485760,BITS_256

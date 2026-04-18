@@ -22,9 +22,11 @@ dependencies {
 }
 
 jmh {
-    warmupIterations.set(3)
+    warmupIterations.set(5)
     iterations.set(5)
     fork.set(1)
+    warmup.set("1s")
+    timeOnIteration.set("1s")
 
     resultFormat.set("CSV")
     resultsFile.set(project.file("build/reports/jmh/results.csv"))
