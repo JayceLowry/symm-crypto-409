@@ -4,6 +4,7 @@ import edu.boisestate.lowry.crypto.*;
 
 import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
+import java.util.Base64;
 
 /**
  * Demonstrates usage of RC6 in CTR mode using a randomly
@@ -24,11 +25,11 @@ public class CipherDemo {
 
         // Encrypt/decrypt a string
         String message = "Imagine an imaginary menagerie manager managing an imaginary menagerie";
-        byte[] ciphertext = cipher.encrypt(message.getBytes(), key);
-        byte[] plaintext = cipher.decrypt(ciphertext, key);
+        byte[] ciphertextBytes = cipher.encrypt(message.getBytes(), key);
+        byte[] plaintextBytes = cipher.decrypt(ciphertextBytes, key);
 
         System.out.printf("Message: %s\n", message);
-        System.out.printf("Ciphertext (interpreted as text): %s\n", new String(ciphertext, StandardCharsets.UTF_8));
-        System.out.printf("Decrypted plaintext: %s\n", new String(plaintext, StandardCharsets.UTF_8));
+        System.out.printf("Ciphertext (bytes interpreted as text): %s\n", Base64.getEncoder().encodeToString(ciphertextBytes));
+        System.out.printf("Decrypted plaintext: %s\n", new String(plaintextBytes, StandardCharsets.UTF_8));
     }
 }
