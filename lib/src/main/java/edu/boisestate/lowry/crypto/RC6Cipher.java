@@ -121,11 +121,6 @@ public class RC6Cipher implements BlockCipher {
      * @param key The key to initialize.
      */
     public void initKey(byte[] key) {
-        if (key == null) {
-            throw new IllegalArgumentException();
-        } else if (key.length != keySize.numBytes) {
-            throw new UnsupportedOperationException();
-        }
         this.roundKeys = keySchedule(key);
     }
 
@@ -212,6 +207,11 @@ public class RC6Cipher implements BlockCipher {
      * @return An array of the round keys as registers.
      */
     private int[] keySchedule(byte[] key) {
+        if (key == null) {
+            throw new IllegalArgumentException();
+        } else if (key.length != keySize.numBytes) {
+            throw new UnsupportedOperationException();
+        }
         // Magic constants
         final int P = 0xB7E15163;
         final int Q = 0x9E3779B9;
