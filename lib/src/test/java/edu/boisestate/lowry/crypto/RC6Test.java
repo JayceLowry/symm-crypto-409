@@ -1,6 +1,7 @@
 package edu.boisestate.lowry.crypto;
 
 import org.junit.jupiter.api.DynamicTest;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
 
 import java.io.*;
@@ -59,5 +60,65 @@ public class RC6Test {
         }
 
         return tests;
+    }
+
+    /**
+     * Helper for testing invalid block sizes.
+     *
+     * @param size The key size for the cipher to test.
+     */
+    private void invalidBlockTestHelper(KeySize size) {
+        RC6Cipher cipher = new RC6Cipher(size);
+        byte[] key = new byte[size.numBytes];
+        byte[] invalidBlockA = new byte[0];
+        byte[] invalidBlockB = new byte[cipher.getBlockSize() / 2];
+        byte[] invalidBlockC = new byte[cipher.getBlockSize() + 4];
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            cipher.encipher(invalidBlockA, key);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            cipher.encipher(invalidBlockB, key);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            cipher.encipher(invalidBlockC, key);
+        });
+    }
+
+    /**
+     * Helper for testing invalid key sizes.
+     *
+     * @param size The correct key size for the cipher to test.
+     */
+    private void invalidKeySizeHelper(KeySize size) {
+        RC6Cipher cipher = new RC6Cipher(size);
+        byte[] block = new byte[cipher.getBlockSize()];
+        byte[] invalidKeyA = new byte[0];
+        byte[] invalidKeyB = new byte[size.numBytes - 1];
+        byte[] invalidKeyC = new byte[size.numBytes + 1];
+
+        assertThrows(Exception.class, () -> {
+            cipher.encipher(block, invalidKeyA);
+        });
+        assertThrows(Exception.class, () -> {
+            cipher.encipher(block, invalidKeyB);
+        });
+        assertThrows(Exception.class, () -> {
+            cipher.encipher(block, invalidKeyC);
+        });
+    }
+
+    @Test
+    public void testInvalidBlockSizes() {
+        for (KeySize size : KeySize.values()) {
+            invalidBlockTestHelper(size);
+        }
+    }
+
+    @Test
+    public void testInvalidKeySizes() {
+        for (KeySize size : KeySize.values()) {
+            invalidKeySizeHelper(size);
+        }
     }
 }
